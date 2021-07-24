@@ -26,6 +26,14 @@ static const char *colors[][3]      = {
 	[SchemeSel]   = { col_gray4, col_cyan,  col_cyan  },
 	[SchemeTitle] = { col_gray4, col_gray1, col_cyan  },
 };
+static const unsigned int baralpha    = 0xd0;
+static const unsigned int borderalpha = OPAQUE;
+static const unsigned int alphas[][3] = {
+	/*                fg      bg        border     */
+	[SchemeNorm]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]   = { OPAQUE, baralpha, borderalpha },
+	[SchemeTitle] = { OPAQUE, baralpha, borderalpha },
+};
 
 typedef struct {
 	const char *name;
