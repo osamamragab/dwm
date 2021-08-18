@@ -56,6 +56,7 @@ static const Rule rules[] = {
 	 */
 	/* class     instance     title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",        NULL,    NULL,           0,         1,          0,           0,        -1 },
+	{ "Firefox",     NULL,    NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "st-256color", NULL,    NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,          NULL,    "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 	{ NULL,         "spterm", NULL,           SPTAG(0),  1,          1,           0,        -1 },
@@ -167,9 +168,14 @@ static Key keys[] = {
 	{ ALTKEY|ShiftMask,             XK_backslash, spawn,          SHCMD("dunstctl set-paused toggle && pkill -RTMIN+6 dwmblocks") },
 	{ ALTKEY|ShiftMask,             XK_bracketleft, spawn,        SHCMD("dunstctl history-pop") },
 	{ ALTKEY|ShiftMask,             XK_bracketright, spawn,       SHCMD("dunstctl close-all") },
-	{ MODKEY,                       XK_F3,        spawn,          SHCMD("ohmyeyes -t") },
+	{ MODKEY,                       XK_F1,        spawn,          SHCMD("tmuxx &") },
+	{ MODKEY,                       XK_F2,        spawn,          SHCMD("redshift -P -O 4500 -g 0.95") },
+	{ MODKEY|ShiftMask,             XK_F2,        spawn,          SHCMD("redshift -x") },
+	{ MODKEY,                       XK_F3,        spawn,          SHCMD("$TERMINAL -e pulsemixer; pkill -RTMIN+7 dwmblocks") },
 	{ MODKEY,                       XK_F4,        spawn,          SHCMD("setxkbmap -query | awk '/layout/{print ($2 == \"us\" ? \"ar\" : \"us\")}' | xargs setxkbmap; pkill -RTMIN+8 dwmblocks") },
 	{ MODKEY,                       XK_F5,        spawn,          SHCMD("dmenuhandler") },
+	{ MODKEY,                       XK_F6,        spawn,          SHCMD("dmenumount") },
+	{ MODKEY|ShiftMask,             XK_F6,        spawn,          SHCMD("dmenuumount") },
 	{ 0,                            XK_Print,     spawn,          SHCMD("dmenuscreenshot") },
 	{ ShiftMask,                    XK_Print,     spawn,          SHCMD("dmenurecord") },
 	{ ALTKEY|ShiftMask,             XK_Print,     spawn,          SHCMD("dmenurecord stop") },
