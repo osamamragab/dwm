@@ -41,9 +41,11 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {"st", "-n", "spcalc", "-f", "monospace:size=16", "-g", "50x20", "-e", "bc", "-lq", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
+	{"spcalc",      spcmd2},
 };
 
 /* tagging */
@@ -56,11 +58,12 @@ static const Rule rules[] = {
 	 */
 	/* class     instance     title           tags mask  isfloating  isterminal  noswallow  monitor */
 	{ "Gimp",        NULL,    NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox",     NULL,    NULL,           1 << 8,    0,          0,          -1,        -1 },
+	/* { "Firefox",     NULL,    NULL,           1 << 8,    0,          0,          -1,        -1 }, */
 	{ "st-256color", NULL,    NULL,           0,         0,          1,           0,        -1 },
 	{ "st-floating", NULL,    NULL,           0,         1,          1,           0,        -1 },
 	{ NULL,          NULL,    "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 	{ NULL,         "spterm", NULL,           SPTAG(0),  1,          1,           0,        -1 },
+	{ NULL,         "spcalc", NULL,           SPTAG(1),  1,          1,           0,        -1 },
 };
 
 /* layout(s) */
@@ -143,6 +146,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_comma,     tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,    tagmon,         {.i = +1 } },
 	{ MODKEY,                       XK_grave,     togglescratch,  {.ui = 0 } },
+	{ MODKEY,                       XK_apostrophe,togglescratch,  {.ui = 1 } },
 	{ MODKEY|ShiftMask,             XK_q,         quit,           {0} },
 	TAGKEYS(                        XK_1,                         0)
 	TAGKEYS(                        XK_2,                         1)
