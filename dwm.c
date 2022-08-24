@@ -228,11 +228,9 @@ static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
-<<<<<<< ours
 static void togglescratch(const Arg *arg);
-=======
 static void togglesticky(const Arg *arg);
->>>>>>> theirs
+static void togglefullscr(const Arg *arg);
 static void toggletag(const Arg *arg);
 static void toggleview(const Arg *arg);
 static void unfocus(Client *c, int setfocus);
@@ -1893,6 +1891,7 @@ togglefloating(const Arg *arg)
 
 void
 <<<<<<< ours
+<<<<<<< ours
 togglescratch(const Arg *arg)
 {
 	Client *c;
@@ -1923,6 +1922,12 @@ togglesticky(const Arg *arg)
 		return;
 	selmon->sel->issticky = !selmon->sel->issticky;
 	arrange(selmon);
+>>>>>>> theirs
+=======
+togglefullscr(const Arg *arg)
+{
+  if(selmon->sel)
+    setfullscreen(selmon->sel, !selmon->sel->isfullscreen);
 >>>>>>> theirs
 }
 
