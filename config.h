@@ -28,9 +28,10 @@ static char selbgcolor[]      = "#005577";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { normfgcolor, normbgcolor, normbordercolor },
-	[SchemeSel]  = { selfgcolor,  selbgcolor,  selbordercolor  },
+	/*                 fg           bg           border   */
+	[SchemeNorm]   = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel]    = { selfgcolor,  selbgcolor,  selbordercolor  },
+	[SchemeTitle]  = { normfgcolor,  normbgcolor, normbordercolor },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
