@@ -28,22 +28,22 @@ static char selbgcolor[]      = "#005577";
 static const unsigned int baralpha = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
-	/*                 fg           bg           border   */
-	[SchemeNorm]   = { normfgcolor, normbgcolor, normbordercolor },
-	[SchemeSel]    = { selfgcolor,  selbgcolor,  selbordercolor  },
-	[SchemeTitle]  = { normfgcolor,  normbgcolor, normbordercolor },
+	/*                fg           bg           border   */
+	[SchemeNorm]  = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel]   = { selfgcolor,  selbgcolor,  selbordercolor  },
+	[SchemeTitle] = { normfgcolor, normbgcolor, normbordercolor },
 };
 static const unsigned int alphas[][3]      = {
-	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
+	/*                fg      bg        border     */
+	[SchemeNorm]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]   = { OPAQUE, baralpha, borderalpha },
+	[SchemeTitle] = { OPAQUE, baralpha, borderalpha },
 };
 
 typedef struct {
 	const char *name;
 	const void *cmd;
 } Sp;
-
 const char *spcmd1[] = { TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = { TERMINAL, "-n", "spnote", "-g", "95x25", "-e", "notes", "-l", "24", NULL };
 const char *spcmd3[] = { TERMINAL, "-n", "spcalc", "-g", "50x20", "-f", "monospace:size=16", "-e", "bc", "-lq", NULL };
