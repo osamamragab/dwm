@@ -5,6 +5,11 @@
 /* appearance */
 static unsigned int borderpx  = 1;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
+static unsigned int gappih    = 20;       /* horiz inner gap between windows */
+static unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
@@ -70,11 +75,26 @@ static int nmaster     = 1;    /* number of clients in master area */
 static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+#define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
+#include "vanitygaps.c"
+
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
-	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "[@]",      spiral },
+	{ "[\\]",     dwindle },
+	{ "H[]",      deck },
+	{ "TTT",      bstack },
+	{ "===",      bstackhoriz },
+	{ "HHH",      grid },
+	{ "###",      nrowgrid },
+	{ "---",      horizgrid },
+	{ ":::",      gaplessgrid },
+	{ "|M|",      centeredmaster },
+	{ ">M>",      centeredfloatingmaster },
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ NULL,       NULL },
 };
 
 /* key definitions */
@@ -107,6 +127,22 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
+	{ MODKEY|Mod4Mask,              XK_u,      incrgaps,       {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_u,      incrgaps,       {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_i,      incrigaps,      {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_i,      incrigaps,      {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_o,      incrogaps,      {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_o,      incrogaps,      {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_6,      incrihgaps,     {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_6,      incrihgaps,     {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_7,      incrivgaps,     {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_7,      incrivgaps,     {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_8,      incrohgaps,     {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_8,      incrohgaps,     {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_9,      incrovgaps,     {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_9,      incrovgaps,     {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_0,      togglegaps,     {0} },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
@@ -161,19 +197,25 @@ static const Button buttons[] = {
  * Xresources preferences to load at startup
  */
 ResourcePref resources[] = {
-		{ "font",               STRING,  &font },
-		{ "dmenufont",          STRING,  &dmenufont },
-		{ "normbgcolor",        STRING,  &normbgcolor },
-		{ "normbordercolor",    STRING,  &normbordercolor },
-		{ "normfgcolor",        STRING,  &normfgcolor },
-		{ "selbgcolor",         STRING,  &selbgcolor },
-		{ "selbordercolor",     STRING,  &selbordercolor },
-		{ "selfgcolor",         STRING,  &selfgcolor },
-		{ "borderpx",           INTEGER, &borderpx },
-		{ "snap",               INTEGER, &snap },
-		{ "showbar",            INTEGER, &showbar },
-		{ "topbar",             INTEGER, &topbar },
-		{ "nmaster",            INTEGER, &nmaster },
-		{ "resizehints",        INTEGER, &resizehints },
-		{ "mfact",              FLOAT,   &mfact },
+	{ "font",               STRING,  &font },
+	{ "dmenufont",          STRING,  &dmenufont },
+	{ "normbgcolor",        STRING,  &normbgcolor },
+	{ "normbordercolor",    STRING,  &normbordercolor },
+	{ "normfgcolor",        STRING,  &normfgcolor },
+	{ "selbgcolor",         STRING,  &selbgcolor },
+	{ "selbordercolor",     STRING,  &selbordercolor },
+	{ "selfgcolor",         STRING,  &selfgcolor },
+	{ "borderpx",           INTEGER, &borderpx },
+	{ "snap",               INTEGER, &snap },
+	{ "showbar",            INTEGER, &showbar },
+	{ "topbar",             INTEGER, &topbar },
+	{ "nmaster",            INTEGER, &nmaster },
+	{ "resizehints",        INTEGER, &resizehints },
+	{ "mfact",              FLOAT,   &mfact },
+	{ "gappih",             INTEGER, &gappih },
+	{ "gappiv",             INTEGER, &gappiv },
+	{ "gappoh",             INTEGER, &gappoh },
+	{ "gappov",             INTEGER, &gappov },
+	{ "smartgaps",          INTEGER, &smartgaps },
+	{ "swallowfloating",    INTEGER, &swallowfloating },
 };
