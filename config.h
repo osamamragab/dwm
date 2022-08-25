@@ -243,15 +243,15 @@ static const Button buttons[] = {
 /*
  * Xresources preferences to load at startup
  */
-ResourcePref resources[] = {
+static const ResourcePref resources[] = {
 	{ "font",               STRING,  &font },
 	{ "dmenufont",          STRING,  &dmenufont },
-	{ "color0",             STRING,  &normbordercolor },
-	{ "color8",             STRING,  &selbordercolor },
 	{ "color0",             STRING,  &normbgcolor },
-	{ "color4",             STRING,  &normfgcolor },
-	{ "color0",             STRING,  &selfgcolor },
 	{ "color4",             STRING,  &selbgcolor },
+	{ "color7",             STRING,  &normfgcolor },
+	{ "color15",            STRING,  &selfgcolor },
+	{ "color0",             STRING,  &normbordercolor },
+	{ "color4",             STRING,  &selbordercolor },
 	{ "borderpx",           INTEGER, &borderpx },
 	{ "snap",               INTEGER, &snap },
 	{ "showbar",            INTEGER, &showbar },

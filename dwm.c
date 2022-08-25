@@ -2753,7 +2753,7 @@ load_xresources(void)
 	Display *display;
 	char *resm;
 	XrmDatabase db;
-	ResourcePref *p;
+	const ResourcePref *p;
 
 	display = XOpenDisplay(NULL);
 	resm = XResourceManagerString(display);
