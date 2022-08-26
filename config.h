@@ -26,15 +26,15 @@ static char normfgcolor[]     = "#bbbbbb";
 static char selfgcolor[]      = "#eeeeee";
 static char selbordercolor[]  = "#005577";
 static char selbgcolor[]      = "#005577";
-static const unsigned int baralpha = 0xd0;
+static const unsigned int baralpha    = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
-static const char *colors[][3]      = {
+static const char *colors[][3] = {
 	/*                fg           bg           border   */
 	[SchemeNorm]  = { normfgcolor, normbgcolor, normbordercolor },
 	[SchemeSel]   = { selfgcolor,  selbgcolor,  selbordercolor  },
 	[SchemeTitle] = { normfgcolor, normbgcolor, normbordercolor },
 };
-static const unsigned int alphas[][3]      = {
+static const unsigned int alphas[][3] = {
 	/*                fg      bg        border     */
 	[SchemeNorm]  = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]   = { OPAQUE, baralpha, borderalpha },
@@ -128,10 +128,10 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,         movestack,      { .i = -1 } },
 	{ MODKEY,                       XK_o,         incnmaster,     { .i = +1 } },
 	{ MODKEY|ShiftMask,             XK_o,         incnmaster,     { .i = -1 } },
-	{ MODKEY,                       XK_g,         focusmaster,    {0} },
 	{ MODKEY,                       XK_h,         setmfact,       { .f = -0.05 } },
 	{ MODKEY,                       XK_l,         setmfact,       { .f = +0.05 } },
 	{ MODKEY,                       XK_space,     zoom,           {0} },
+	{ MODKEY|ControlMask,           XK_space,     focusmaster,    {0} },
 	{ MODKEY|ShiftMask,             XK_space,     togglefloating, {0} },
 	{ MODKEY,                       XK_s,         togglesticky,   {0} },
 	{ MODKEY|ShiftMask,             XK_s,      togglealwaysontop, {0} },
