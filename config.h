@@ -174,7 +174,7 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                         6)
 	TAGKEYS(                        XK_8,                         7)
 	TAGKEYS(                        XK_9,                         8)
-	{ ALTKEY|ShiftMask,             XK_f,         spawn,          SPAWN(TERMINAL, "-e", "bicon", "$SHELL", "nnn", "-Rr") },
+	{ ALTKEY|ShiftMask,             XK_f,         spawn,          SPAWN(TERMINAL, "-e", "bicon", "$SHELL", "nnn", "-Rrn") },
 	{ ALTKEY|ShiftMask,             XK_m,         spawn,          SPAWN(TERMINAL, "-e", "bicon", "$SHELL", "ncmpcpp") },
 	{ ALTKEY|ShiftMask,             XK_e,         spawn,          SPAWN(TERMINAL, "-e", "bicon", "$SHELL", "neomutt") },
 	{ ALTKEY|ShiftMask,             XK_b,         spawn,          SPAWN(BROWSER) },
