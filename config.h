@@ -32,7 +32,7 @@ static const char *colors[][3] = {
 	/*                fg           bg           border   */
 	[SchemeNorm]  = { normfgcolor, normbgcolor, normbordercolor },
 	[SchemeSel]   = { selfgcolor,  selbgcolor,  selbordercolor  },
-	[SchemeTitle] = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeTitle] = { selfgcolor,  normbgcolor, normbordercolor },
 };
 static const unsigned int alphas[][3] = {
 	/*                fg      bg        border     */
@@ -247,11 +247,11 @@ static const ResourcePref resources[] = {
 	{ "font",               STRING,  &font },
 	{ "dmenufont",          STRING,  &dmenufont },
 	{ "background",         STRING,  &normbgcolor },
-	{ "selectionColor",     STRING,  &selbgcolor },
+	{ "backgroundSel",      STRING,  &selbgcolor },
 	{ "forground",          STRING,  &normfgcolor },
-	{ "forground",          STRING,  &selfgcolor },
+	{ "forgroundSel",       STRING,  &selfgcolor },
 	{ "background",         STRING,  &normbordercolor },
-	{ "selectionColor",     STRING,  &selbordercolor },
+	{ "backgroundSel",      STRING,  &selbordercolor },
 	{ "borderpx",           INTEGER, &borderpx },
 	{ "snap",               INTEGER, &snap },
 	{ "showbar",            INTEGER, &showbar },
