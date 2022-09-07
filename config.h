@@ -2,7 +2,7 @@
 
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "firefox"
+#define BROWSER "brave"
 
 #include "movestack.c"
 
