@@ -2,7 +2,7 @@
 
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "brave"
+#define BROWSER "firefox"
 
 #define XK_XF86MonBrightnessDown 0x1008ff03
 #define XK_XF86MonBrightnessUp 0x1008ff02
