@@ -205,6 +205,7 @@ static const Key keys[] = {
 	{ ALTKEY|ShiftMask,             XK_F2,                    spawn,                  SPAWN("dmenuumount") },
 	{ ALTKEY,                       XK_F3,                    spawn,                  SPAWN("redshift", "-P", "-O", "4500", "-g", "0.95") },
 	{ ALTKEY,                       XK_F4,                    spawn,                  SPAWN("redshift", "-x") },
+	{ ALTKEY,                       XK_F5,                    spawn,                  SPAWN("playerctl", "-a", "play-pause") },
 	{ ALTKEY,                       XK_F7,                    spawn,                  SHCMD(TERMINAL " -n st-floating -e pulsemixer; pkill -x -RTMIN+7 dwmblocks") },
 	{ ALTKEY,                       XK_F9,                    spawn,                  SPAWN("dmenuscreenshot") },
 	{ ALTKEY|ShiftMask,             XK_F9,                    spawn,                  SPAWN("dmenurecord") },
