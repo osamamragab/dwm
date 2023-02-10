@@ -172,7 +172,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_grave,                 togglescratch,          { .ui = 0 } },
 	{ MODKEY,                       XK_apostrophe,            togglescratch,          { .ui = 1 } },
 	{ MODKEY,                       XK_equal,                 togglescratch,          { .ui = 2 } },
-	{ MODKEY|ShiftMask,             XK_q,                     quit,                   {0} },
+	// { MODKEY|ShiftMask,             XK_q,                     quit,                   {0} },
 	TAGKEYS(                        XK_1,                                             0)
 	TAGKEYS(                        XK_2,                                             1)
 	TAGKEYS(                        XK_3,                                             2)
