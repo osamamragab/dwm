@@ -211,7 +211,7 @@ static const Key keys[] = {
 	{ ALTKEY|ShiftMask,             XK_F9,                    spawn,                  SPAWN("dmenurecord") },
 	{ ALTKEY|ControlMask,           XK_F9,                    spawn,                  SPAWN("dmenurecord", "stop") },
 	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n st-floating -e nmtui; pkill -x -RTMIN+5 dwmblocks") },
-	{ ALTKEY|ShiftMask,             XK_q,                     spawn,                  SPAWN("dmenushutdown") },
+	{ ALTKEY|ShiftMask,             XK_q,                     spawn,                  SPAWN("dmenusysact") },
 	{ ALTKEY|ControlMask,           XK_q,                     spawn,                  SPAWN("dmenushutdown", "lock") },
 	{ 0,                            XK_XF86MonBrightnessDown, spawn,                  SPAWN("xbacklight", "-dec", "10") },
 	{ 0,                            XK_XF86MonBrightnessUp,   spawn,                  SPAWN("xbacklight", "-inc", "10") },
