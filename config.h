@@ -208,7 +208,7 @@ static const Key keys[] = {
 	{ ALTKEY,                       XK_F4,                    spawn,                  SPAWN("redshift", "-x") },
 	{ ALTKEY,                       XK_F5,                    spawn,                  SPAWN("playerctl", "-a", "play-pause") },
 	{ ALTKEY,                       XK_F7,                    spawn,                  SHCMD(TERMINAL " -n st-floating -e pulsemixer; pkill -x -RTMIN+7 dwmblocks") },
-	{ ALTKEY,                       XK_F9,                    spawn,                  SPAWN("dmenuscreenshot") },
+	{ 0,                            XK_Print,                 spawn,                  SPAWN("dmenuscreenshot") },
 	{ ALTKEY|ShiftMask,             XK_F9,                    spawn,                  SPAWN("dmenurecord") },
 	{ ALTKEY|ControlMask,           XK_F9,                    spawn,                  SPAWN("dmenurecord", "stop") },
 	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n st-floating -e nmtui; pkill -x -RTMIN+5 dwmblocks") },
