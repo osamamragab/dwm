@@ -75,7 +75,7 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class         instance    title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ BROWSERCLASS,  NULL,       NULL,           1 << 2,    0,          0,           0,        -1 },
+	{ BROWSERCLASS,  NULL,       NULL,           1 << 8,    0,          0,           0,        -1 },
 	{ "Gimp",        NULL,       NULL,           0,         1,          0,           0,        -1 },
 	{ "Dragon",      NULL,       NULL,           0,         1,          0,           1,        -1 },
 	{ TERMCLASS,     NULL,       NULL,           0,         0,          1,           0,        -1 },
