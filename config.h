@@ -74,16 +74,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         instance    title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ BROWSERCLASS,  NULL,       NULL,           1 << 8,    0,          0,           0,        -1 },
-	{ "Gimp",        NULL,       NULL,           0,         1,          0,           0,        -1 },
-	{ "Dragon",      NULL,       NULL,           0,         1,          0,           1,        -1 },
-	{ TERMCLASS,     NULL,       NULL,           0,         0,          1,           0,        -1 },
-	{ TERMCLASS,     "floating", NULL,           0,         1,          0,           0,        -1 },
-	{ NULL,          NULL,       "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ TERMCLASS,     "spterm",   NULL,           SPTAG(0),  1,          1,           0,        -1 },
-	{ TERMCLASS,     "spnote",   NULL,           SPTAG(1),  1,          1,           0,        -1 },
-	{ TERMCLASS,     "spcalc",   NULL,           SPTAG(2),  1,          1,           0,        -1 },
+	/* class         instance     title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ BROWSERCLASS,  NULL,        NULL,           1 << 8,    0,          0,           0,        -1 },
+	{ "Gimp",        NULL,        NULL,           0,         1,          0,           0,        -1 },
+	{ "Dragon",      NULL,        NULL,           0,         1,          0,           1,        -1 },
+	{ TERMCLASS,     NULL,        NULL,           0,         0,          1,           0,        -1 },
+	{ TERMCLASS,     "floatterm", NULL,           0,         1,          0,           0,        -1 },
+	{ NULL,          NULL,        "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ TERMCLASS,     "spterm",    NULL,           SPTAG(0),  1,          1,           0,        -1 },
+	{ TERMCLASS,     "spnote",    NULL,           SPTAG(1),  1,          1,           0,        -1 },
+	{ TERMCLASS,     "spcalc",    NULL,           SPTAG(2),  1,          1,           0,        -1 },
 };
 
 /* layout(s) */
@@ -209,11 +209,11 @@ static const Key keys[] = {
 	{ ALTKEY,                       XK_F3,                    spawn,                  SPAWN("redshift", "-P", "-O", "4500", "-g", "0.95") },
 	{ ALTKEY,                       XK_F4,                    spawn,                  SPAWN("redshift", "-x") },
 	{ ALTKEY,                       XK_F5,                    spawn,                  SPAWN("playerctl", "-a", "play-pause") },
-	{ ALTKEY,                       XK_F7,                    spawn,                  SHCMD(TERMINAL " -n st-floating -e pulsemixer; pkill -x -RTMIN+7 dwmblocks") },
+	{ ALTKEY,                       XK_F7,                    spawn,                  SHCMD(TERMINAL " -n floatterm -e pulsemixer; pkill -x -RTMIN+7 dwmblocks") },
 	{ 0,                            XK_Print,                 spawn,                  SPAWN("dmenuscreenshot") },
 	{ ALTKEY|ShiftMask,             XK_F9,                    spawn,                  SPAWN("dmenurecord") },
 	{ ALTKEY|ControlMask,           XK_F9,                    spawn,                  SPAWN("dmenurecord", "stop") },
-	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n st-floating -e nmtui; pkill -x -RTMIN+5 dwmblocks") },
+	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n floatterm -e nmtui; pkill -x -RTMIN+5 dwmblocks") },
 	{ MODKEY,                       XK_q,                     spawn,                  SPAWN("dmenusysact") },
 	{ ALTKEY|ShiftMask,             XK_q,                     spawn,                  SPAWN("dmenusysact", "lock") },
 	{ 0,                            XK_XF86MonBrightnessDown, spawn,                  SPAWN("xbacklight", "-dec", "10") },
