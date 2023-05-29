@@ -2,8 +2,8 @@
 
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "firefox"
-#define BROWSERCLASS "Firefox"
+#define BROWSER "brave"
+#define BROWSERCLASS "Brave-browser"
 
 #define XK_XF86MonBrightnessDown 0x1008ff03
 #define XK_XF86MonBrightnessUp 0x1008ff02
@@ -211,8 +211,8 @@ static const Key keys[] = {
 	{ ALTKEY,                       XK_F5,                    spawn,                  SPAWN("playerctl", "-a", "play-pause") },
 	{ ALTKEY,                       XK_F7,                    spawn,                  SHCMD(TERMINAL " -n floatterm -e pulsemixer; pkill -x -RTMIN+7 dwmblocks") },
 	{ 0,                            XK_Print,                 spawn,                  SPAWN("dmenuscreenshot") },
-	{ ALTKEY|ShiftMask,             XK_F9,                    spawn,                  SPAWN("dmenurecord") },
-	{ ALTKEY|ControlMask,           XK_F9,                    spawn,                  SPAWN("dmenurecord", "stop") },
+	{ ALTKEY,             XK_Print,                    spawn,                  SPAWN("dmenurecord") },
+	{ ALTKEY|ControlMask,           XK_Print,                    spawn,                  SPAWN("dmenurecord", "stop") },
 	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n floatterm -e nmtui; pkill -x -RTMIN+5 dwmblocks") },
 	{ MODKEY,                       XK_q,                     spawn,                  SPAWN("dmenusysact") },
 	{ ALTKEY|ShiftMask,             XK_q,                     spawn,                  SPAWN("dmenusysact", "lock") },
