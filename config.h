@@ -16,7 +16,7 @@
 #include "movestack.c"
 
 /* appearance */
-static unsigned int borderpx  = 1;        /* border pixel of windows */
+static unsigned int borderpx  = 3;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static unsigned int gappih    = 20;       /* horiz inner gap between windows */
 static unsigned int gappiv    = 10;       /* vert inner gap between windows */
@@ -193,35 +193,32 @@ static const Key keys[] = {
 	{ ALTKEY|ShiftMask,             XK_o,                     spawn,                  SPAWN("clipmenu") },
 	{ ALTKEY|ShiftMask,             XK_p,                     spawn,                  SPAWN("passmenu") },
 	{ ALTKEY|ShiftMask,             XK_s,                     spawn,                  SPAWN("dmenuspt") },
-	{ ALTKEY|ShiftMask,             XK_equal,                 spawn,                  SPAWN("volumectl", "inc") },
-	{ ALTKEY|ShiftMask,             XK_minus,                 spawn,                  SPAWN("volumectl", "dec") },
-	{ ALTKEY|ShiftMask,             XK_BackSpace,             spawn,                  SPAWN("volumectl", "toggle") },
 	{ ALTKEY|ShiftMask,             XK_period,                spawn,                  SPAWN("mpc", "-q", "next") },
 	{ ALTKEY|ShiftMask,             XK_comma,                 spawn,                  SPAWN("mpc", "-q", "prev") },
 	{ ALTKEY|ShiftMask,             XK_space,                 spawn,                  SPAWN("mpc", "-q", "toggle") },
 	{ ALTKEY|ShiftMask,             XK_slash,                 spawn,                  SPAWN("mpc", "-q", "seek", "0") },
-	{ ALTKEY|ShiftMask,             XK_backslash,             spawn,                  SHCMD("dunstctl set-paused toggle; pkill -x -RTMIN+6 dwmblocks") },
-	{ ALTKEY|ShiftMask,             XK_bracketleft,           spawn,                  SPAWN("dunstctl", "history-pop") },
-	{ ALTKEY|ShiftMask,             XK_bracketright,          spawn,                  SPAWN("dunstctl", "close-all") },
+	{ ALTKEY|ShiftMask,             XK_backslash,             spawn,                  SPAWN("dunstctl", "close-all") },
 	{ ALTKEY,                       XK_F1,                    spawn,                  SPAWN("tmuxx", "-") },
 	{ ALTKEY,                       XK_F2,                    spawn,                  SPAWN("dmenumount") },
 	{ ALTKEY|ShiftMask,             XK_F2,                    spawn,                  SPAWN("dmenuumount") },
 	{ ALTKEY,                       XK_F3,                    spawn,                  SPAWN("redshift", "-P", "-O", "4500", "-g", "0.95") },
 	{ ALTKEY,                       XK_F4,                    spawn,                  SPAWN("redshift", "-x") },
-	{ ALTKEY,                       XK_F5,                    spawn,                  SPAWN("playerctl", "-a", "play-pause") },
 	{ ALTKEY,                       XK_F7,                    spawn,                  SHCMD(TERMINAL " -n floatterm -e pulsemixer; pkill -x -RTMIN+7 dwmblocks") },
-	{ 0,                            XK_Print,                 spawn,                  SPAWN("dmenuscreenshot") },
-	{ ALTKEY,             XK_Print,                    spawn,                  SPAWN("dmenurecord") },
-	{ ALTKEY|ControlMask,           XK_Print,                    spawn,                  SPAWN("dmenurecord", "stop") },
 	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n floatterm -e nmtui; pkill -x -RTMIN+5 dwmblocks") },
+	{ 0,                            XK_Print,                 spawn,                  SPAWN("dmenuscreenshot") },
+	{ ALTKEY,                       XK_Print,                 spawn,                  SPAWN("dmenurecord") },
+	{ ALTKEY|ControlMask,           XK_Print,                 spawn,                  SPAWN("dmenurecord", "stop") },
 	{ MODKEY,                       XK_q,                     spawn,                  SPAWN("dmenusysact") },
 	{ ALTKEY|ShiftMask,             XK_q,                     spawn,                  SPAWN("dmenusysact", "lock") },
-	{ 0,                            XK_XF86MonBrightnessUp,   spawn,                  SPAWN("screenlightctl", "inc", "10") },
-	{ 0,                            XK_XF86MonBrightnessDown, spawn,                  SPAWN("screenlightctl", "dec", "10") },
+	{ ALTKEY|ShiftMask,             XK_equal,                 spawn,                  SPAWN("volumectl", "inc") },
+	{ ALTKEY|ShiftMask,             XK_minus,                 spawn,                  SPAWN("volumectl", "dec") },
+	{ ALTKEY|ShiftMask,             XK_BackSpace,             spawn,                  SPAWN("volumectl", "toggle") },
 	{ 0,                            XK_XF86AudioRaiseVolume,  spawn,                  SPAWN("volumectl", "inc") },
 	{ 0,                            XK_XF86AudioLowerVolume,  spawn,                  SPAWN("volumectl", "dec") },
 	{ 0,                            XK_XF86AudioMute,         spawn,                  SPAWN("volumectl", "toggle") },
 	{ 0,                            XK_XF86AudioMicMute,      spawn,                  SPAWN("amixer", "set", "Capture", "toggle") },
+	{ 0,                            XK_XF86MonBrightnessUp,   spawn,                  SPAWN("screenlightctl", "inc") },
+	{ 0,                            XK_XF86MonBrightnessDown, spawn,                  SPAWN("screenlightctl", "dec") },
 	// { 0,                            XK_XF86RFKill,            spawn,                  SPAWN("rfkill", "toggle", "all") },
 
 	/*
