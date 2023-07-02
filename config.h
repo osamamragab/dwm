@@ -2,8 +2,7 @@
 
 #define TERMINAL "st"
 #define TERMCLASS "St"
-#define BROWSER "brave"
-#define BROWSERCLASS "Brave-browser"
+#define BROWSER "librewolf"
 
 #define XK_XF86MonBrightnessDown 0x1008ff03
 #define XK_XF86MonBrightnessUp 0x1008ff02
@@ -75,7 +74,6 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class         instance     title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ BROWSERCLASS,  NULL,        NULL,           1 << 8,    0,          0,           0,        -1 },
 	{ "Gimp",        NULL,        NULL,           0,         1,          0,           0,        -1 },
 	{ "Dragon",      NULL,        NULL,           0,         1,          0,           1,        -1 },
 	{ TERMCLASS,     NULL,        NULL,           0,         0,          1,           0,        -1 },
