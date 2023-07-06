@@ -4,16 +4,6 @@
 #define TERMCLASS "St"
 #define BROWSER "librewolf"
 
-#define XK_XF86MonBrightnessDown 0x1008ff03
-#define XK_XF86MonBrightnessUp 0x1008ff02
-#define XK_XF86AudioMute 0x1008ff12
-#define XK_XF86AudioLowerVolume 0x1008ff11
-#define XK_XF86AudioRaiseVolume 0x1008ff13
-#define XK_XF86AudioMicMute 0x1008ffb2
-#define XK_XF86RFKill 0x1008ffb5
-
-#include "movestack.c"
-
 /* appearance */
 static unsigned int borderpx  = 3;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
@@ -125,6 +115,9 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 
+#include <X11/XF86keysym.h>
+#include "movestack.c"
+
 static const Key keys[] = {
 	/* modifier                     key                       function                argument */
 	{ MODKEY,                       XK_Return,                spawn,                  { .v = termcmd } },
@@ -211,13 +204,13 @@ static const Key keys[] = {
 	{ ALTKEY|ShiftMask,             XK_equal,                 spawn,                  SPAWN("volumectl", "inc") },
 	{ ALTKEY|ShiftMask,             XK_minus,                 spawn,                  SPAWN("volumectl", "dec") },
 	{ ALTKEY|ShiftMask,             XK_BackSpace,             spawn,                  SPAWN("volumectl", "toggle") },
-	{ 0,                            XK_XF86AudioRaiseVolume,  spawn,                  SPAWN("volumectl", "inc") },
-	{ 0,                            XK_XF86AudioLowerVolume,  spawn,                  SPAWN("volumectl", "dec") },
-	{ 0,                            XK_XF86AudioMute,         spawn,                  SPAWN("volumectl", "toggle") },
-	{ 0,                            XK_XF86AudioMicMute,      spawn,                  SPAWN("amixer", "set", "Capture", "toggle") },
-	{ 0,                            XK_XF86MonBrightnessUp,   spawn,                  SPAWN("screenlightctl", "inc") },
-	{ 0,                            XK_XF86MonBrightnessDown, spawn,                  SPAWN("screenlightctl", "dec") },
-	// { 0,                            XK_XF86RFKill,            spawn,                  SPAWN("rfkill", "toggle", "all") },
+	{ 0,                            XF86XK_AudioRaiseVolume,  spawn,                  SPAWN("volumectl", "inc") },
+	{ 0,                            XF86XK_AudioLowerVolume,  spawn,                  SPAWN("volumectl", "dec") },
+	{ 0,                            XF86XK_AudioMute,         spawn,                  SPAWN("volumectl", "toggle") },
+	{ 0,                            XF86XK_AudioMicMute,      spawn,                  SPAWN("amixer", "set", "Capture", "toggle") },
+	{ 0,                            XF86XK_MonBrightnessUp,   spawn,                  SPAWN("screenlightctl", "inc") },
+	{ 0,                            XF86XK_MonBrightnessDown, spawn,                  SPAWN("screenlightctl", "dec") },
+	// { 0,                            XF86XK_RFKill,            spawn,                  SPAWN("rfkill", "toggle", "all") },
 
 	/*
 	{ MODKEY|Mod1Mask,              XK_u,                     incrgaps,               { .i = +1 } },
