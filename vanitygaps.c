@@ -1,5 +1,7 @@
 /* Key binding functions */
 static void defaultgaps(const Arg *arg);
+static void togglegaps(const Arg *arg);
+static void togglesmartgaps(const Arg *arg);
 // static void incrgaps(const Arg *arg);
 // static void incrigaps(const Arg *arg);
 // static void incrogaps(const Arg *arg);
@@ -7,21 +9,20 @@ static void defaultgaps(const Arg *arg);
 // static void incrovgaps(const Arg *arg);
 // static void incrihgaps(const Arg *arg);
 // static void incrivgaps(const Arg *arg);
-static void togglegaps(const Arg *arg);
-static void togglesmartgaps(const Arg *arg);
 
 /* Layouts (delete the ones you do not need) */
 static void bstack(Monitor *m);
-// static void bstackhoriz(Monitor *m);
 static void centeredmaster(Monitor *m);
 static void centeredfloatingmaster(Monitor *m);
 static void deck(Monitor *m);
 static void dwindle(Monitor *m);
 static void fibonacci(Monitor *m, int s);
-// static void grid(Monitor *m);
-// static void nrowgrid(Monitor *m);
 static void spiral(Monitor *m);
 static void tile(Monitor *m);
+// static void bstackhoriz(Monitor *m);
+// static void grid(Monitor *m);
+// static void nrowgrid(Monitor *m);
+
 /* Internals */
 static void getgaps(Monitor *m, int *oh, int *ov, int *ih, int *iv, unsigned int *nc);
 static void getfacts(Monitor *m, int msize, int ssize, float *mf, float *sf, int *mr, int *sr);
@@ -401,13 +402,13 @@ centeredfloatingmaster(Monitor *m)
 		/* go mfact box in the center if more than nmaster clients */
 		if (m->ww > m->wh) {
 			mw = m->ww * m->mfact - iv*mivf*(MIN(n, m->nmaster) - 1);
-			mh = m->wh * 0.9;
+			mh = m->wh * 0.9 - 2*oh;
 		} else {
 			mw = m->ww * 0.9 - iv*mivf*(MIN(n, m->nmaster) - 1);
 			mh = m->wh * m->mfact;
 		}
-		mx = m->wx + (m->ww - mw) / 2;
-		my = m->wy + (m->wh - mh - 2*oh) / 2;
+		mx = m->wx + (m->ww - mw)/2;
+		my = m->wy + (m->wh - mh)/2;
 
 		sx = m->wx + ov;
 		sy = m->wy + oh;
