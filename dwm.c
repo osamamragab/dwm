@@ -505,7 +505,7 @@ attach(Client *c)
 void
 attachaside(Client *c) {
 	Client *at = nexttagged(c);
-	if(!at) {
+	if (!at) {
 		attach(c);
 		return;
 	}
@@ -524,7 +524,7 @@ void
 swallow(Client *p, Client *c)
 {
 
-	if (c->noswallow || c->isterminal || (!swallowfloating && c->isfloating))
+	if (c->noswallow || c->isterminal || (c->isfloating && !swallowfloating))
 		return;
 
 	detach(c);
@@ -584,7 +584,7 @@ buttonpress(XEvent *e)
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
 		unsigned int occ = 0;
-		for(c = m->clients; c; c=c->next)
+		for (c = m->clients; c; c=c->next)
 			occ |= c->tags;
 		do {
 			/* Do not reserve space for vacant tags */
@@ -908,7 +908,7 @@ drawbar(Monitor *m)
 	x = 0;
 	for (i = 0; i < LENGTH(tags); i++) {
 		/* Do not draw vacant tags */
-		if(!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
+		if (!(occ & 1 << i || m->tagset[m->seltags] & 1 << i))
 			continue;
 		apply_fribidi(tags[i]);
 		w = TEXTW(fribidi_text);
@@ -1364,7 +1364,7 @@ movemouse(const Arg *arg)
 		return;
 	do {
 		XMaskEvent(dpy, MOUSEMASK|ExposureMask|SubstructureRedirectMask, &ev);
-		switch(ev.type) {
+		switch (ev.type) {
 		case ConfigureRequest:
 		case Expose:
 		case MapRequest:
@@ -1404,10 +1404,10 @@ movemouse(const Arg *arg)
 Client *
 nexttagged(Client *c) {
 	Client *walked = c->mon->clients;
-	for(;
+	for (;
 			walked && (walked->isfloating || !ISVISIBLEONTAG(walked, c->tags));
 			walked = walked->next
-		 );
+			);
 	return walked;
 }
 
@@ -1439,8 +1439,7 @@ propertynotify(XEvent *e)
 	else if (ev->state == PropertyDelete)
 		return; /* ignore */
 	else if ((c = wintoclient(ev->window))) {
-		switch(ev->atom) {
-		default: break;
+		switch (ev->atom) {
 		case XA_WM_TRANSIENT_FOR:
 			if (!c->isfloating && (XGetTransientForHint(dpy, c->win, &trans)) &&
 				(c->isfloating = (wintoclient(trans)) != NULL))
@@ -1452,6 +1451,8 @@ propertynotify(XEvent *e)
 		case XA_WM_HINTS:
 			updatewmhints(c);
 			drawbars();
+			break;
+		default:
 			break;
 		}
 		if (ev->atom == XA_WM_NAME || ev->atom == netatom[NetWMName]) {
@@ -1531,7 +1532,7 @@ resizemouse(const Arg *arg)
 	XWarpPointer(dpy, None, c->win, 0, 0, 0, 0, c->w + c->bw - 1, c->h + c->bw - 1);
 	do {
 		XMaskEvent(dpy, MOUSEMASK|ExposureMask|SubstructureRedirectMask, &ev);
-		switch(ev.type) {
+		switch (ev.type) {
 		case ConfigureRequest:
 		case Expose:
 		case MapRequest:
@@ -1967,7 +1968,7 @@ togglescratch(const Arg *arg)
 void
 togglefullscr(const Arg *arg)
 {
-  if(selmon->sel)
+  if (selmon->sel)
     setfullscreen(selmon->sel, !selmon->sel->isfullscreen);
 }
 
@@ -2593,7 +2594,7 @@ xinitvisual()
 
 	infos = XGetVisualInfo(dpy, masks, &tpl, &nitems);
 	visual = NULL;
-	for(i = 0; i < nitems; i ++) {
+	for (i = 0; i < nitems; i ++) {
 		fmt = XRenderFindVisualFormat(dpy, infos[i].visual);
 		if (fmt->type == PictTypeDirect && fmt->direct.alphaMask) {
 			visual = infos[i].visual;
@@ -2606,7 +2607,7 @@ xinitvisual()
 
 	XFree(infos);
 
-	if (! visual) {
+	if (!visual) {
 		visual = DefaultVisual(dpy, screen);
 		depth = DefaultDepth(dpy, screen);
 		cmap = DefaultColormap(dpy, screen);
