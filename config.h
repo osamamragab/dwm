@@ -136,7 +136,6 @@ static const Key keys[] = {
 	{ MODKEY|ControlMask,           XK_space,                 focusmaster,            {0} },
 	{ MODKEY|ShiftMask,             XK_space,                 togglefloating,         {0} },
 	{ MODKEY,                       XK_s,                     togglesticky,           {0} },
-	{ MODKEY|ShiftMask,             XK_s,                     togglealwaysontop,      {0} },
   { MODKEY|ControlMask,           XK_f,                     togglecanfocusfloating, {0} },
   { MODKEY|ControlMask|ShiftMask, XK_f,                     resetcanfocusfloating,  {0} },
 	{ MODKEY,                       XK_f,                     togglefullscr,          {0} },

@@ -106,7 +106,7 @@ struct Client {
 	int basew, baseh, incw, inch, maxw, maxh, minw, minh, hintsvalid;
 	int bw, oldbw;
 	unsigned int tags;
-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, isterminal, noswallow, issticky, isalwaysontop, cantfocus;
+	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, isterminal, noswallow, issticky, cantfocus;
 	pid_t pid;
 	Client *next;
 	Client *snext;
@@ -256,7 +256,6 @@ static void togglebar(const Arg *arg);
 static void togglefloating(const Arg *arg);
 static void togglescratch(const Arg *arg);
 static void togglesticky(const Arg *arg);
-static void togglealwaysontop(const Arg *arg);
 static void togglefullscr(const Arg *arg);
 static void togglecanfocusfloating(const Arg *arg);
 static void toggletag(const Arg *arg);
@@ -938,9 +937,8 @@ drawbar(Monitor *m)
 			drw_setscheme(drw, scheme[m == selmon ? SchemeTitle : SchemeNorm]);
 			apply_fribidi(m->sel->name);
 			drw_text(drw, x, 0, w, bh, lrpad / 2, fribidi_text, 0);
-			drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
-			if (m->sel->isalwaysontop)
-				drw_rect(drw, x + boxs, bh - boxw, boxw, boxw, 0, 0);
+			if (m->sel->isfloating)
+				drw_rect(drw, x + boxs, boxs, boxw, boxw, m->sel->isfixed, 0);
 		} else {
 			drw_setscheme(drw, scheme[SchemeNorm]);
 			drw_rect(drw, x, 0, w, bh, 1, 1);
@@ -1625,16 +1623,6 @@ restack(Monitor *m)
 	if (m->sel->isfloating || !m->lt[m->sellt]->arrange)
 		XRaiseWindow(dpy, m->sel->win);
 
-	/* raise the aot window */
-	for(Monitor *m_search = mons; m_search; m_search = m_search->next){
-		for(c = m_search->clients; c; c = c->next){
-			if(c->isalwaysontop){
-				XRaiseWindow(dpy, c->win);
-				break;
-			}
-		}
-	}
-
 	if (m->lt[m->sellt]->arrange) {
 		wc.stack_mode = Below;
 		wc.sibling = m->barwin;
@@ -1991,33 +1979,11 @@ togglefloating(const Arg *arg)
 	if (selmon->sel->isfloating)
 		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
 			selmon->sel->w, selmon->sel->h, 0);
-	else
-		selmon->sel->isalwaysontop = 0; /* disabled, turn this off too */
   resetcanfocusfloating();
 	arrange(selmon);
 }
 
 
-void
-togglealwaysontop(const Arg *arg)
-{
-	if (!selmon->sel)
-		return;
-	if (selmon->sel->isfullscreen)
-		return;
-	if (selmon->sel->isalwaysontop) {
-		selmon->sel->isalwaysontop = 0;
-	} else {
-		/* disable others */
-		for (Monitor *m = mons; m; m = m->next)
-			for (Client *c = m->clients; c; c = c->next)
-				c->isalwaysontop = 0;
-		/* turn on, make it float too */
-		selmon->sel->isfloating = 1;
-		selmon->sel->isalwaysontop = 1;
-	}
-	arrange(selmon);
-}
 
 void
 resetcanfocusfloating()
