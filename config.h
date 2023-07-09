@@ -18,12 +18,12 @@ static int topbar             = 1;        /* 0 means bottom bar */
 static char font[]            = "monospace:size=10";
 static char dmenufont[]       = "monospace:size=10";
 static const char *fonts[]    = { font, "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true" };
+static char normfgcolor[]     = "#bbbbbb";
 static char normbgcolor[]     = "#222222";
 static char normbordercolor[] = "#444444";
-static char normfgcolor[]     = "#bbbbbb";
 static char selfgcolor[]      = "#eeeeee";
-static char selbordercolor[]  = "#005577";
 static char selbgcolor[]      = "#005577";
+static char selbordercolor[]  = "#005577";
 static const unsigned int baralpha    = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3] = {
@@ -112,7 +112,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbordercolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 
 #include <X11/XF86keysym.h>

@@ -1320,7 +1320,6 @@ monocle(Monitor *m)
 	int oh, ov, ih, iv;
 
 	getgaps(m, &oh, &ov, &ih, &iv, &n);
-
 	if (n > 0) /* override layout symbol */
 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next))
