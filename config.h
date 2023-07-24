@@ -45,9 +45,6 @@ static Sp scratchpads[] = {
 	{ "spcalc",    spcmd3 },
 };
 
-/* staticstatus */
-static int statmonval = 0;
-
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 static const Rule rules[] = {
@@ -260,5 +257,4 @@ static const ResourcePref resources[] = {
 	{ "gappov",             INTEGER, &gappov },
 	{ "smartgaps",          INTEGER, &smartgaps },
 	{ "swallowfloating",    INTEGER, &swallowfloating },
-	{ "statusmon",          INTEGER, &statmonval },
 };

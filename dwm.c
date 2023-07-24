@@ -325,7 +325,7 @@ static Cur *cursor[CurLast];
 static Clr **scheme;
 static Display *dpy;
 static Drw *drw;
-static Monitor *mons, *selmon, *statmon;
+static Monitor *mons, *selmon;
 static Window root, wmcheckwin;
 
 static xcb_connection_t *xcon;
@@ -599,7 +599,7 @@ buttonpress(XEvent *e)
 			arg.ui = 1 << i;
 		} else if (ev->x < x + TEXTW(selmon->ltsymbol))
 			click = ClkLtSymbol;
-		else if (m == statmon && ev->x > selmon->ww - (int)TEXTW(stext))
+		else if (ev->x > selmon->ww - (int)TEXTW(stext))
 			click = ClkStatusText;
 		else
 			click = ClkWinTitle;
@@ -895,7 +895,7 @@ drawbar(Monitor *m)
 		return;
 
 	/* draw status first so it can be overdrawn by tags later */
-	if (m == statmon) { /* status is only drawn on selected monitor */
+	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		apply_fribidi(stext);
 		tw = TEXTW(fribidi_text) - lrpad + 2; /* 2px right padding */
@@ -2230,8 +2230,6 @@ updategeom(void)
 				m->mh = m->wh = unique[i].height;
 				updatebarpos(m);
 			}
-			if (i == statmonval)
-				statmon = m;
 		}
 		/* removed monitors if n > nn */
 		for (i = nn; i < n; i++) {
@@ -2246,8 +2244,6 @@ updategeom(void)
 			}
 			if (m == selmon)
 				selmon = mons;
-			if (m == statmon)
-				statmon = mons;
 			cleanupmon(m);
 		}
 		free(unique);
@@ -2335,7 +2331,7 @@ updatestatus(void)
 {
 	if (!gettextprop(root, XA_WM_NAME, stext, sizeof(stext)))
 		strcpy(stext, "dwm-"VERSION);
-	drawbar(statmon);
+	drawbar(selmon);
 }
 
 void
