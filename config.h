@@ -177,7 +177,7 @@ static const Key keys[] = {
 	{ ALTKEY,                       XK_F3,                    spawn,                  SPAWN("redshift", "-P", "-O", "4500", "-g", "0.95") },
 	{ ALTKEY,                       XK_F4,                    spawn,                  SPAWN("redshift", "-x") },
 	{ ALTKEY,                       XK_F7,                    spawn,                  SHCMD(TERMINAL " -n floatterm -e pulsemixer; pkill -x -RTMIN+7 dwmblocks") },
-	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n floatterm -e nmtui; pkill -x -RTMIN+5 dwmblocks") },
+	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n floatterm -e iwctl; pkill -x -RTMIN+5 dwmblocks") },
 	{ 0,                            XK_Print,                 spawn,                  SPAWN("dmenu_screenshot") },
 	{ ALTKEY,                       XK_Print,                 spawn,                  SPAWN("dmenu_record") },
 	{ ALTKEY|ControlMask,           XK_Print,                 spawn,                  SPAWN("dmenu_record", "stop") },
