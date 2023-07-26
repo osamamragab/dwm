@@ -171,7 +171,7 @@ static const Key keys[] = {
 	{ ALTKEY|ShiftMask,             XK_space,                 spawn,                  SPAWN("mpc", "-q", "toggle") },
 	{ ALTKEY|ShiftMask,             XK_slash,                 spawn,                  SPAWN("mpc", "-q", "seek", "0") },
 	{ ALTKEY|ShiftMask,             XK_backslash,             spawn,                  SPAWN("dunstctl", "close-all") },
-	{ ALTKEY,                       XK_F1,                    spawn,                  SPAWN("tmuxx", "-") },
+	{ ALTKEY,                       XK_F1,                    spawn,                  SPAWN("dmenu_projects") },
 	{ ALTKEY,                       XK_F2,                    spawn,                  SPAWN("dmenu_mount") },
 	{ ALTKEY|ShiftMask,             XK_F2,                    spawn,                  SPAWN("dmenu_umount") },
 	{ ALTKEY,                       XK_F3,                    spawn,                  SPAWN("redshift", "-P", "-O", "4500", "-g", "0.95") },
