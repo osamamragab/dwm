@@ -5,25 +5,25 @@
 #define BROWSER "firefox"
 
 /* appearance */
-static unsigned int borderpx  = 2;        /* border pixel of windows */
-static unsigned int snap      = 32;       /* snap pixel */
-static unsigned int gappih    = 20;       /* horiz inner gap between windows */
-static unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
-static int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
-static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static int showbar            = 1;        /* 0 means no bar */
-static int topbar             = 1;        /* 0 means bottom bar */
-static char font[]            = "monospace:size=10";
-static char dmenufont[]       = "monospace:size=10";
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int snap      = 32;       /* snap pixel */
+static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+static       int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
+static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+static const int showbar            = 1;        /* 0 means no bar */
+static const int topbar             = 1;        /* 0 means bottom bar */
+static const char font[]            = "monospace:size=10";
+static const char dmenufont[]       = "monospace:size=10";
 static const char *fonts[]    = { font, "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true" };
-static char normfgcolor[]     = "#bbbbbb";
-static char normbgcolor[]     = "#222222";
-static char normbordercolor[] = "#444444";
-static char selfgcolor[]      = "#eeeeee";
-static char selbgcolor[]      = "#005577";
-static char selbordercolor[]  = "#005577";
+static const char normfgcolor[]     = "#d8dee9";
+static const char normbgcolor[]     = "#242933";
+static const char normbordercolor[] = "#4c566a";
+static const char selfgcolor[]      = "#eceff4";
+static const char selbgcolor[]      = "#5e81ac";
+static const char selbordercolor[]  = "#5e81ac";
 static const char *colors[][3] = {
 	/*                fg           bg           border   */
 	[SchemeNorm]  = { normfgcolor, normbgcolor, normbordercolor },
@@ -64,9 +64,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static int nmaster     = 1;    /* number of clients in master area */
-static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static const int nmaster     = 1;    /* number of clients in master area */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
@@ -227,31 +227,4 @@ static const Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
-};
-
-/*
- * Xresources preferences to load at startup
- */
-static const ResourcePref resources[] = {
-	{ "font",               STRING,  &font },
-	{ "dmenufont",          STRING,  &dmenufont },
-	{ "background",         STRING,  &normbgcolor },
-	{ "backgroundSel",      STRING,  &selbgcolor },
-	{ "foreground",         STRING,  &normfgcolor },
-	{ "foregroundSel",      STRING,  &selfgcolor },
-	{ "borderColor",        STRING,  &normbordercolor },
-	{ "borderColorSel",     STRING,  &selbordercolor },
-	{ "borderpx",           INTEGER, &borderpx },
-	{ "snap",               INTEGER, &snap },
-	{ "showbar",            INTEGER, &showbar },
-	{ "topbar",             INTEGER, &topbar },
-	{ "nmaster",            INTEGER, &nmaster },
-	{ "resizehints",        INTEGER, &resizehints },
-	{ "mfact",              FLOAT,   &mfact },
-	{ "gappih",             INTEGER, &gappih },
-	{ "gappiv",             INTEGER, &gappiv },
-	{ "gappoh",             INTEGER, &gappoh },
-	{ "gappov",             INTEGER, &gappov },
-	{ "smartgaps",          INTEGER, &smartgaps },
-	{ "swallowfloating",    INTEGER, &swallowfloating },
 };
