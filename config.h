@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 #define TERMINAL "st"
-#define TERMCLASS "St"
+#define TERMCLASS "st-256color"
 #define BROWSER "firefox"
 
 /* appearance */
