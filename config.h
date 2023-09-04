@@ -80,16 +80,10 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-#define SPAWN(...) { .v = (const char*[]){ __VA_ARGS__, NULL } }
-
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
-
-#include <X11/XF86keysym.h>
 
 static const Key keys[] = {
 	/* modifier                     key                       function                argument */
@@ -100,8 +94,8 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_k,                     focusstack,             { .i = -1 } },
 	{ MODKEY|ShiftMask,             XK_j,                     pushdown,               {0} },
 	{ MODKEY|ShiftMask,             XK_k,                     pushup,                 {0} },
-	{ MODKEY,                       XK_o,                     incnmaster,             { .i = +1 } },
-	{ MODKEY|ShiftMask,             XK_o,                     incnmaster,             { .i = -1 } },
+	{ MODKEY,                       XK_i,                     incnmaster,             { .i = +1 } },
+	{ MODKEY|ShiftMask,             XK_i,                     incnmaster,             { .i = -1 } },
 	{ MODKEY,                       XK_h,                     setmfact,               { .f = -0.05 } },
 	{ MODKEY,                       XK_l,                     setmfact,               { .f = +0.05 } },
 	{ MODKEY,                       XK_space,                 zoom,                   {0} },
@@ -112,7 +106,7 @@ static const Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_c,                     killclient,             {0} },
 	{ MODKEY,                       XK_backslash,             setlayout,              {0} },
 	{ MODKEY,                       XK_t,                     setlayout,              { .v = &layouts[0] } },
-	{ MODKEY,                       XK_m,                     setlayout,              { .v = &layouts[1] } },
+	{ MODKEY|ShiftMask,             XK_t,                     setlayout,              { .v = &layouts[1] } },
 	{ MODKEY|ShiftMask,             XK_f,                     setlayout,              { .v = &layouts[2] } },
 	{ MODKEY,                       XK_0,                     view,                   { .ui = ~0 } },
 	{ MODKEY|ShiftMask,             XK_0,                     tag,                    { .ui = ~0 } },
@@ -133,40 +127,6 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_7,                                             6)
 	TAGKEYS(                        XK_8,                                             7)
 	TAGKEYS(                        XK_9,                                             8)
-	{ ALTKEY|ShiftMask,             XK_f,                     spawn,                  SPAWN(TERMINAL, "-e", "bicon.bin", "nnn", "-Rrn") },
-	{ ALTKEY|ShiftMask,             XK_m,                     spawn,                  SPAWN(TERMINAL, "-e", "bicon.bin", "ncmpcpp") },
-	{ ALTKEY|ShiftMask,             XK_e,                     spawn,                  SPAWN(TERMINAL, "-e", "bicon.bin", "neomutt") },
-	{ ALTKEY|ShiftMask,             XK_b,                     spawn,                  SPAWN(BROWSER) },
-	{ ALTKEY|ShiftMask,             XK_i,                     spawn,                  SPAWN("dmenu_handler") },
-	{ ALTKEY|ShiftMask,             XK_o,                     spawn,                  SPAWN("clipmenu") },
-	{ ALTKEY|ShiftMask,             XK_p,                     spawn,                  SPAWN("passmenu") },
-	{ ALTKEY|ShiftMask,             XK_period,                spawn,                  SPAWN("mpc", "-q", "next") },
-	{ ALTKEY|ShiftMask,             XK_comma,                 spawn,                  SPAWN("mpc", "-q", "prev") },
-	{ ALTKEY|ShiftMask,             XK_space,                 spawn,                  SPAWN("mpc", "-q", "toggle") },
-	{ ALTKEY|ShiftMask,             XK_slash,                 spawn,                  SPAWN("mpc", "-q", "seek", "0") },
-	{ ALTKEY|ShiftMask,             XK_backslash,             spawn,                  SPAWN("dunstctl", "close-all") },
-	{ ALTKEY,                       XK_F1,                    spawn,                  SPAWN("dmenu_projects") },
-	{ ALTKEY,                       XK_F2,                    spawn,                  SPAWN("dmenu_mount") },
-	{ ALTKEY|ShiftMask,             XK_F2,                    spawn,                  SPAWN("dmenu_umount") },
-	{ ALTKEY,                       XK_F3,                    spawn,                  SPAWN("redshift", "-P", "-O", "4500", "-g", "0.95") },
-	{ ALTKEY,                       XK_F4,                    spawn,                  SPAWN("redshift", "-x") },
-	{ ALTKEY,                       XK_F7,                    spawn,                  SHCMD(TERMINAL " -n floatterm -e pulsemixer; pkill -x -RTMIN+7 dwmblocks") },
-	{ ALTKEY,                       XK_F11,                   spawn,                  SHCMD(TERMINAL " -n floatterm -e wpa_cli; pkill -x -RTMIN+5 dwmblocks") },
-	{ 0,                            XK_Print,                 spawn,                  SPAWN("dmenu_screenshot") },
-	{ ALTKEY,                       XK_Print,                 spawn,                  SPAWN("dmenu_record") },
-	{ ALTKEY|ControlMask,           XK_Print,                 spawn,                  SPAWN("dmenu_record", "stop") },
-	{ MODKEY,                       XK_q,                     spawn,                  SPAWN("dmenu_sysact") },
-	{ ALTKEY|ShiftMask,             XK_q,                     spawn,                  SPAWN("dmenu_sysact", "lock") },
-	{ ALTKEY|ShiftMask,             XK_equal,                 spawn,                  SPAWN("volumectl", "inc") },
-	{ ALTKEY|ShiftMask,             XK_minus,                 spawn,                  SPAWN("volumectl", "dec") },
-	{ ALTKEY|ShiftMask,             XK_BackSpace,             spawn,                  SPAWN("volumectl", "toggle") },
-	{ 0,                            XF86XK_AudioRaiseVolume,  spawn,                  SPAWN("volumectl", "inc") },
-	{ 0,                            XF86XK_AudioLowerVolume,  spawn,                  SPAWN("volumectl", "dec") },
-	{ 0,                            XF86XK_AudioMute,         spawn,                  SPAWN("volumectl", "toggle") },
-	{ 0,                            XF86XK_AudioMicMute,      spawn,                  SPAWN("amixer", "set", "Capture", "toggle") },
-	{ 0,                            XF86XK_MonBrightnessUp,   spawn,                  SPAWN("screenlightctl", "inc") },
-	{ 0,                            XF86XK_MonBrightnessDown, spawn,                  SPAWN("screenlightctl", "dec") },
-	// { 0,                            XF86XK_RFKill,            spawn,                  SPAWN("rfkill", "toggle", "all") },
 };
 
 /* button definitions */
