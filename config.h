@@ -2,7 +2,6 @@
 
 #define TERMINAL "st"
 #define TERMCLASS "st-256color"
-#define BROWSER "firefox"
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -12,18 +11,11 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char font[]            = "monospace:size=10";
 static const char dmenufont[]       = "monospace:size=10";
-static const char *fonts[]    = { font, "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true" };
-static const char normfgcolor[]     = "#d8dee9";
-static const char normbgcolor[]     = "#242933";
-static const char normbordercolor[] = "#4c566a";
-static const char selfgcolor[]      = "#eceff4";
-static const char selbgcolor[]      = "#5e81ac";
-static const char selbordercolor[]  = "#5e81ac";
-static const char *colors[][3] = {
-	/*                fg           bg           border   */
-	[SchemeNorm]  = { normfgcolor, normbgcolor, normbordercolor },
-	[SchemeSel]   = { selfgcolor,  selbgcolor,  selbordercolor  },
-	[SchemeTitle] = { selfgcolor,  normbgcolor, normbordercolor },
+static const char *fonts[]          = { font, "NotoColorEmoji:pixelsize=10:antialias=true:autohint=true" };
+static const char *colors[][3]      = {
+	/*                fg         bg         border   */
+	[SchemeNorm]  = { "#d8dee9", "#242933", "#4c566a" },
+	[SchemeSel]   = { "#eceff4", "#5e81ac", "#5e81ac" },
 };
 
 typedef struct {
@@ -73,7 +65,6 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask
-#define ALTKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \

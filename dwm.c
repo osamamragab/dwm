@@ -71,7 +71,7 @@
 /* cursor */
 enum { CurNormal, CurResize, CurMove, CurLast };
 /* color schemes */
-enum { SchemeNorm, SchemeSel, SchemeTitle };
+enum { SchemeNorm, SchemeSel };
 /* EWMH atoms */
 enum {
 	NetSupported, NetWMName, NetWMState, NetWMCheck,
@@ -866,7 +866,6 @@ drawbar(Monitor *m)
 	w = TEXTW(m->ltsymbol);
 	drw_setscheme(drw, scheme[SchemeNorm]);
 	x = drw_text(drw, x, 0, w, bh, lrpad / 2, m->ltsymbol, 0);
-
 	if ((w = m->ww - tw - x) > bh) {
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		drw_rect(drw, x, 0, w, bh, 1, 1);
