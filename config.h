@@ -39,21 +39,21 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         instance     title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",        NULL,        NULL,           0,         1,          0,           0,        -1 },
-	{ "Dragon",      NULL,        NULL,           0,         1,          0,           1,        -1 },
-	{ TERMCLASS,     NULL,        NULL,           0,         0,          1,           0,        -1 },
-	{ TERMCLASS,     "floatterm", NULL,           0,         1,          0,           0,        -1 },
-	{ NULL,          NULL,        "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-	{ TERMCLASS,     "spterm",    NULL,           SPTAG(0),  1,          1,           0,        -1 },
-	{ TERMCLASS,     "spnote",    NULL,           SPTAG(1),  1,          1,           0,        -1 },
-	{ TERMCLASS,     "spcalc",    NULL,           SPTAG(2),  1,          1,           0,        -1 },
+	/* class         instance     title           tags mask  isfloating  isterminal   noswallow  monitor */
+	{ "Gimp",        NULL,        NULL,           0,         1,          0,           0,         -1 },
+	{ "Dragon",      NULL,        NULL,           0,         1,          0,           1,         -1 },
+	{ TERMCLASS,     NULL,        NULL,           0,         0,          1,           0,         -1 },
+	{ TERMCLASS,     "floatterm", NULL,           0,         1,          0,           0,         -1 },
+	{ NULL,          NULL,        "Event Tester", 0,         0,          0,           1,         -1 }, /* xev */
+	{ TERMCLASS,     "spterm",    NULL,           SPTAG(0),  1,          1,           0,         -1 },
+	{ TERMCLASS,     "spnote",    NULL,           SPTAG(1),  1,          1,           0,         -1 },
+	{ TERMCLASS,     "spcalc",    NULL,           SPTAG(2),  1,          1,           0,         -1 },
 };
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
+static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -95,7 +95,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_f,                     togglefullscr,          {0} },
 	{ MODKEY,                       XK_Tab,                   view,                   {0} },
 	{ MODKEY|ShiftMask,             XK_c,                     killclient,             {0} },
-	{ MODKEY,                       XK_backslash,             setlayout,              {0} },
 	{ MODKEY,                       XK_t,                     setlayout,              { .v = &layouts[0] } },
 	{ MODKEY|ShiftMask,             XK_t,                     setlayout,              { .v = &layouts[1] } },
 	{ MODKEY|ShiftMask,             XK_f,                     setlayout,              { .v = &layouts[2] } },
@@ -108,7 +107,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_grave,                 togglescratch,          { .ui = 0 } },
 	{ MODKEY,                       XK_apostrophe,            togglescratch,          { .ui = 1 } },
 	{ MODKEY,                       XK_equal,                 togglescratch,          { .ui = 2 } },
-	// { MODKEY|ShiftMask,             XK_q,                     quit,                   {0} },
+	{ MODKEY|ControlMask|ShiftMask, XK_q,                     quit,                   {0} },
 	TAGKEYS(                        XK_1,                                             0)
 	TAGKEYS(                        XK_2,                                             1)
 	TAGKEYS(                        XK_3,                                             2)
