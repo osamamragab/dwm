@@ -15,35 +15,19 @@ static const char *colors[][3]      = {
 	[SchemeSel]   = { "#eceff4", "#5e81ac", "#5e81ac" },
 };
 
-typedef struct {
-	const char *name;
-	const void *cmd;
-} Sp;
-const char *spcmd1[] = { TERMINAL, "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = { TERMINAL, "-n", "spnote", "-g", "95x25", "-e", "notes", "-l", "24", NULL };
-const char *spcmd3[] = { TERMINAL, "-n", "spcalc", "-g", "50x20", "-f", "monospace:size=16", "-e", "bc", "-lq", NULL };
-static Sp scratchpads[] = {
-	/* name        cmd  */
-	{ "spterm",    spcmd1 },
-	{ "spnote",    spcmd2 },
-	{ "spcalc",    spcmd3 },
-};
-
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class         instance     title           tags mask  isfloating  monitor */
-	{ "Gimp",        NULL,        NULL,           0,         1,          -1 },
-	{ "Dragon",      NULL,        NULL,           0,         1,          -1 },
-	{ TERMCLASS,     NULL,        NULL,           0,         0,          -1 },
-	{ TERMCLASS,     "floatterm", NULL,           0,         1,          -1 },
-	{ TERMCLASS,     "spterm",    NULL,           SPTAG(0),  1,          -1 },
-	{ TERMCLASS,     "spnote",    NULL,           SPTAG(1),  1,          -1 },
-	{ TERMCLASS,     "spcalc",    NULL,           SPTAG(2),  1,          -1 },
+	/* class         instance      title        tags mask  isfloating  monitor */
+	{ "Gimp",        NULL,         NULL,        0,         1,          -1 },
+	{ "Dragon",      NULL,         NULL,        0,         1,          -1 },
+	{ TERMCLASS,     NULL,         NULL,        0,         0,          -1 },
+	{ TERMCLASS,     "floatterm",  NULL,        0,         1,          -1 },
 };
 
 /* layout(s) */
@@ -99,9 +83,6 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_period,     focusmon,       { .i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,      tagmon,         { .i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period,     tagmon,         { .i = +1 } },
-	{ MODKEY,                       XK_grave,      togglescratch,  { .ui = 0 } },
-	{ MODKEY,                       XK_apostrophe, togglescratch,  { .ui = 1 } },
-	{ MODKEY,                       XK_equal,      togglescratch,  { .ui = 2 } },
 	{ MODKEY|ControlMask|ShiftMask, XK_q,          quit,           {0} },
 	TAGKEYS(                        XK_1,                                             0)
 	TAGKEYS(                        XK_2,                                             1)
