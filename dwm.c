@@ -218,7 +218,6 @@ static void seturgent(Client *c, int urg);
 static void showhide(Client *c);
 static void sighup(int _);
 static void sigterm(int _);
-static void spawn(const Arg *arg);
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
@@ -1745,28 +1744,6 @@ void sighup(int _) {
 void sigterm(int _) {
 	Arg a = {.i = 0};
 	quit(&a);
-}
-
-void
-spawn(const Arg *arg)
-{
-	struct sigaction sa;
-
-	if (arg->v == dmenucmd)
-		dmenumon[0] = '0' + selmon->num;
-	if (fork() == 0) {
-		if (dpy)
-			close(ConnectionNumber(dpy));
-		setsid();
-
-		sigemptyset(&sa.sa_mask);
-		sa.sa_flags = 0;
-		sa.sa_handler = SIG_DFL;
-		sigaction(SIGCHLD, &sa, NULL);
-
-		execvp(((char **)arg->v)[0], (char **)arg->v);
-		die("dwm: execvp '%s' failed:", ((char **)arg->v)[0]);
-	}
 }
 
 void

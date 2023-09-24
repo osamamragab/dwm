@@ -1,8 +1,5 @@
 /* See LICENSE file for copyright and license details. */
 
-#define TERMINAL "st"
-#define TERMCLASS "st-256color"
-
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -50,15 +47,8 @@ static const Layout layouts[] = {
 	{ MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
-/* commands */
-static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, NULL };
-static const char *termcmd[]  = { TERMINAL, NULL };
-
 static const Key keys[] = {
 	/* modifier                     key            function        argument */
-	{ MODKEY,                       XK_Return,     spawn,          { .v = termcmd } },
-	{ MODKEY,                       XK_r,          spawn,          { .v = dmenucmd } },
 	{ MODKEY,                       XK_b,          togglebar,      {0} },
 	{ MODKEY,                       XK_j,          focusstack,     { .i = +1 } },
 	{ MODKEY,                       XK_k,          focusstack,     { .i = -1 } },
@@ -100,7 +90,6 @@ static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkStatusText,        0,              Button3,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
 	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
