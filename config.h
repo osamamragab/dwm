@@ -23,7 +23,7 @@ static const Rule rules[] = {
 	/* class      instance      title      tags mask   iscentered  isfloating  monitor */
 	{ "Gimp",     NULL,         NULL,      0,          0,          1,          -1 },
 	{ "Dragon",   NULL,         NULL,      0,          1,          1,          -1 },
-	{ NULL,       "scratchpad", NULL,      0,          1,          1,          -1 },
+	{ NULL,       "scratchpad", NULL,      ~0,         1,          1,          -1 },
 };
 
 /* layout(s) */
