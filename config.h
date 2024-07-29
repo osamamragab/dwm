@@ -1,15 +1,21 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
-static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10:weight=bold" };
-static const char *colors[][3]      = {
-	/*                fg         bg         border   */
-	[SchemeNorm]  = { "#d8dee9", "#242933", "#4c566a" },
-	[SchemeSel]   = { "#eceff4", "#5e81ac", "#5e81ac" },
+static unsigned int borderpx  = 1;        /* border pixel of windows */
+static unsigned int snap      = 32;       /* snap pixel */
+static int showbar            = 1;        /* 0 means no bar */
+static int topbar             = 1;        /* 0 means bottom bar */
+static const char *fonts[]    = { "monospace:size=10:weight=bold" };
+static char normfgcolor[]     = "#bbbbbb";
+static char normbgcolor[]     = "#222222";
+static char normbordercolor[] = "#444444";
+static char selfgcolor[]      = "#eeeeee";
+static char selbgcolor[]      = "#005577";
+static char selbordercolor[]  = "#005577";
+static const char *colors[][3] = {
+	/*                fg           bg           border   */
+	[SchemeNorm]  = { normfgcolor, normbgcolor, normbordercolor },
+	[SchemeSel]   = { selfgcolor,  selbgcolor,  selbordercolor  },
 };
 
 /* tagging */
@@ -27,9 +33,9 @@ static const Rule rules[] = {
 };
 
 /* layout(s) */
-static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster     = 1;    /* number of clients in master area */
-static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
+static int nmaster     = 1;    /* number of clients in master area */
+static int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
@@ -97,4 +103,23 @@ static const Button buttons[] = {
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+};
+
+/*
+ * Xresources preferences to load at startup
+ */
+static const ResourcePref resources[] = {
+	{ "color4",      STRING,  &normfgcolor },
+	{ "color0",      STRING,  &normbgcolor },
+	{ "color0",      STRING,  &normbordercolor },
+	{ "color6",      STRING,  &selfgcolor },
+	{ "color10",     STRING,  &selbgcolor },
+	{ "color10",     STRING,  &selbordercolor },
+	{ "borderpx",    INTEGER, &borderpx },
+	{ "snap",        INTEGER, &snap },
+	{ "showbar",     INTEGER, &showbar },
+	{ "topbar",      INTEGER, &topbar },
+	{ "mfact",       FLOAT,   &mfact },
+	{ "nmaster",     INTEGER, &nmaster },
+	{ "resizehints", INTEGER, &resizehints },
 };
