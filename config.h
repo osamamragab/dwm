@@ -109,12 +109,12 @@ static const Button buttons[] = {
  * Xresources preferences to load at startup
  */
 static const ResourcePref resources[] = {
-	{ "color4",      STRING,  &normfgcolor },
+	{ "color15",     STRING,  &normfgcolor },
 	{ "color0",      STRING,  &normbgcolor },
-	{ "color0",      STRING,  &normbordercolor },
-	{ "color6",      STRING,  &selfgcolor },
-	{ "color10",     STRING,  &selbgcolor },
-	{ "color10",     STRING,  &selbordercolor },
+	{ "color8",      STRING,  &normbordercolor },
+	{ "color15",     STRING,  &selfgcolor },
+	{ "color4",      STRING,  &selbgcolor },
+	{ "color4",      STRING,  &selbordercolor },
 	{ "borderpx",    INTEGER, &borderpx },
 	{ "snap",        INTEGER, &snap },
 	{ "showbar",     INTEGER, &showbar },
